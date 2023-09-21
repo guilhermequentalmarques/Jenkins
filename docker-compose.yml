@@ -1,0 +1,24 @@
+version: '3'
+services:
+ jenkins:
+  container_name: jenkins-servidor
+  image: jenkins-server:5.0
+  build:
+   context: .
+   dockerfile: dockerfileJenkins
+  ports:
+   - "8080:8080"
+  networks:
+   - net
+
+ remote_host:
+  container_name: remote-host
+  image: remote-host:5.0
+  build:
+   context: .
+   dockerfile: dockerfileUbuntu
+  networks:
+   - net
+
+networks:
+ net:
